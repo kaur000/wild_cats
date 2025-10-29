@@ -7,6 +7,9 @@ module.exports = {
     'selector-class-pattern': null,
     'custom-property-pattern': null,
     'font-family-no-missing-generic-family-keyword': true,
-    'unit-allowed-list': ['px', '%', 'em', 'rem', 's', 'ms', 'deg', 'vh', 'vw', 'fr']
+    'unit-allowed-list': ['px', '%', 'em', 'rem', 's', 'ms', 'deg', 'vh', 'vw', 'fr'],
+    'keyframes-name-pattern': null,
+    'declaration-block-single-line-max-declarations': null,
+    'declaration-block-no-duplicate-properties': null
   }
 };

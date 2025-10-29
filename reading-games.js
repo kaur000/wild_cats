@@ -567,7 +567,7 @@ class Utils {
      */
     static getCorrectMessage() {
         const messages = ['Awesome!', 'Perfect!', 'Great job!', 'Fantastic!',
-                         'You got it!', 'Amazing!', 'Brilliant!', 'Excellent!'];
+            'You got it!', 'Amazing!', 'Brilliant!', 'Excellent!'];
         return messages[Math.floor(Math.random() * messages.length)];
     }
 
@@ -590,7 +590,7 @@ class Utils {
 /**
  * Manages local storage for game progress and achievements
  */
-class StorageManager {
+class GameStorageManager {
     static KEYS = {
         PROGRESS: 'readingGames_progress',
         ACHIEVEMENTS: 'readingGames_achievements',
@@ -969,40 +969,40 @@ class AchievementSystem {
 
         // First game
         if (stats.gamesPlayed === 1) {
-            if (StorageManager.unlockAchievement('first_game', this.ACHIEVEMENTS.FIRST_GAME)) {
+            if (GameStorageManager.unlockAchievement('first_game', this.ACHIEVEMENTS.FIRST_GAME)) {
                 newAchievements.push(this.ACHIEVEMENTS.FIRST_GAME);
             }
         }
 
         // Perfect round
         if (stats.perfectRound) {
-            if (StorageManager.unlockAchievement('perfect_round', this.ACHIEVEMENTS.PERFECT_ROUND)) {
+            if (GameStorageManager.unlockAchievement('perfect_round', this.ACHIEVEMENTS.PERFECT_ROUND)) {
                 newAchievements.push(this.ACHIEVEMENTS.PERFECT_ROUND);
             }
         }
 
         // Streak achievements
         if (stats.bestStreak >= 5) {
-            if (StorageManager.unlockAchievement('streak_5', this.ACHIEVEMENTS.STREAK_5)) {
+            if (GameStorageManager.unlockAchievement('streak_5', this.ACHIEVEMENTS.STREAK_5)) {
                 newAchievements.push(this.ACHIEVEMENTS.STREAK_5);
             }
         }
         if (stats.bestStreak >= 10) {
-            if (StorageManager.unlockAchievement('streak_10', this.ACHIEVEMENTS.STREAK_10)) {
+            if (GameStorageManager.unlockAchievement('streak_10', this.ACHIEVEMENTS.STREAK_10)) {
                 newAchievements.push(this.ACHIEVEMENTS.STREAK_10);
             }
         }
 
         // Play count
         if (stats.totalGamesPlayed >= 10) {
-            if (StorageManager.unlockAchievement('play_10', this.ACHIEVEMENTS.PLAY_10)) {
+            if (GameStorageManager.unlockAchievement('play_10', this.ACHIEVEMENTS.PLAY_10)) {
                 newAchievements.push(this.ACHIEVEMENTS.PLAY_10);
             }
         }
 
         // High score
         if (stats.score >= 100) {
-            if (StorageManager.unlockAchievement('high_score_100', this.ACHIEVEMENTS.HIGH_SCORE_100)) {
+            if (GameStorageManager.unlockAchievement('high_score_100', this.ACHIEVEMENTS.HIGH_SCORE_100)) {
                 newAchievements.push(this.ACHIEVEMENTS.HIGH_SCORE_100);
             }
         }
@@ -1067,9 +1067,9 @@ class BaseGame {
 
     /**
      * Check answer
-     * @param {*} answer - User's answer
+     * @param {*} _answer - User's answer
      */
-    checkAnswer(answer) {
+    checkAnswer(_answer) {
         throw new Error('checkAnswer() must be implemented by subclass');
     }
 
@@ -1365,7 +1365,7 @@ class SoundOutGame extends BaseGame {
         );
     }
 
-    checkAnswer(answer) {
+    checkAnswer(_answer) {
         // Not used - submitAnswer is called instead
     }
 }
@@ -1420,12 +1420,12 @@ class FluencyGame extends BaseGame {
         const closeEnough = Utils.calculateSimilarity(answer.toLowerCase(), data.text.toLowerCase()) > 0.8;
 
         this.showResult(correct || closeEnough, correct || closeEnough ?
-            `Great reading! You got it right!` :
+            'Great reading! You got it right!' :
             `Good try! The sentence was: "${data.text}"`
         );
     }
 
-    checkAnswer(answer) {
+    checkAnswer(_answer) {
         // Not used - submitAnswer is called instead
     }
 }
@@ -1507,7 +1507,7 @@ class SyllableGame extends BaseGame {
         );
     }
 
-    checkAnswer(answer) {
+    checkAnswer(_answer) {
         // Not used - submitAnswer is called instead
     }
 
@@ -2123,7 +2123,6 @@ class StorySequencerGame extends BaseGame {
     }
 
     checkOrder() {
-        const data = this.getCurrentData();
         const sentences = document.querySelectorAll('.story-sentence');
         const currentOrder = Array.from(sentences).map(el => {
             const idx = parseInt(el.dataset.idx);
@@ -2306,7 +2305,7 @@ class GameManager {
      * Load saved progress from storage
      */
     loadProgress() {
-        const progress = StorageManager.load(StorageManager.KEYS.PROGRESS, {});
+        const progress = GameStorageManager.load(GameStorageManager.KEYS.PROGRESS, {});
         console.log('Loaded progress:', progress);
     }
 
@@ -2337,51 +2336,51 @@ class GameManager {
 
         // Create and initialize appropriate game
         switch(gameName) {
-            case 'blends':
-                this.currentGame = new BlendsGame(this);
-                break;
-            case 'digraphs':
-                this.currentGame = new DigraphsGame(this);
-                break;
-            case 'vowel-teams':
-                this.currentGame = new VowelTeamsGame(this);
-                break;
-            case 'sound-out':
-                this.currentGame = new SoundOutGame(this);
-                break;
-            case 'fluency':
-                this.currentGame = new FluencyGame(this);
-                break;
-            case 'syllables':
-                this.currentGame = new SyllableGame(this);
-                break;
-            case 'sight-words':
-                this.currentGame = new SightWordsGame(this);
-                break;
-            case 'rhyming':
-                this.currentGame = new RhymingGame(this);
-                break;
-            case 'word-builder':
-                this.currentGame = new WordBuilderGame(this);
-                break;
-            case 'beginning-sounds':
-                this.currentGame = new BeginningSoundsGame(this);
-                break;
-            case 'magic-e':
-                this.currentGame = new MagicEGame(this);
-                break;
-            case 'word-families':
-                this.currentGame = new WordFamiliesGame(this);
-                break;
-            case 'story-sequencer':
-                this.currentGame = new StorySequencerGame(this);
-                break;
-            case 'word-detective':
-                this.currentGame = new WordDetectiveGame(this);
-                break;
-            default:
-                console.error('Unknown game:', gameName);
-                return;
+        case 'blends':
+            this.currentGame = new BlendsGame(this);
+            break;
+        case 'digraphs':
+            this.currentGame = new DigraphsGame(this);
+            break;
+        case 'vowel-teams':
+            this.currentGame = new VowelTeamsGame(this);
+            break;
+        case 'sound-out':
+            this.currentGame = new SoundOutGame(this);
+            break;
+        case 'fluency':
+            this.currentGame = new FluencyGame(this);
+            break;
+        case 'syllables':
+            this.currentGame = new SyllableGame(this);
+            break;
+        case 'sight-words':
+            this.currentGame = new SightWordsGame(this);
+            break;
+        case 'rhyming':
+            this.currentGame = new RhymingGame(this);
+            break;
+        case 'word-builder':
+            this.currentGame = new WordBuilderGame(this);
+            break;
+        case 'beginning-sounds':
+            this.currentGame = new BeginningSoundsGame(this);
+            break;
+        case 'magic-e':
+            this.currentGame = new MagicEGame(this);
+            break;
+        case 'word-families':
+            this.currentGame = new WordFamiliesGame(this);
+            break;
+        case 'story-sequencer':
+            this.currentGame = new StorySequencerGame(this);
+            break;
+        case 'word-detective':
+            this.currentGame = new WordDetectiveGame(this);
+            break;
+        default:
+            console.error('Unknown game:', gameName);
+            return;
         }
 
         this.currentGame.init();
@@ -2442,7 +2441,7 @@ class GameManager {
         const perfectRound = this.correctAnswers === this.totalQuestions;
 
         // Save progress
-        const progress = StorageManager.getProgress(this.currentGameName);
+        const progress = GameStorageManager.getProgress(this.currentGameName);
         const stats = {
             gamesPlayed: (progress.gamesPlayed || 0) + 1,
             totalGamesPlayed: this.getTotalGamesPlayed() + 1,
@@ -2452,7 +2451,7 @@ class GameManager {
             perfectRound: perfectRound
         };
 
-        StorageManager.saveProgress(this.currentGameName, stats);
+        GameStorageManager.saveProgress(this.currentGameName, stats);
 
         // Track educational standards progress
         const gameObjectives = GAME_LEARNING_OBJECTIVES[this.currentGameName];
@@ -2462,12 +2461,12 @@ class GameManager {
                 correctAnswers: this.correctAnswers
             };
             gameObjectives.standards.forEach(standardCode => {
-                StorageManager.trackStandardProgress(standardCode, this.currentGameName, performance);
+                GameStorageManager.trackStandardProgress(standardCode, this.currentGameName, performance);
             });
         }
 
         // Check for high score
-        const isHighScore = StorageManager.saveHighScore(this.currentGameName, this.score);
+        const isHighScore = GameStorageManager.saveHighScore(this.currentGameName, this.score);
 
         // Check for achievements
         const newAchievements = AchievementSystem.checkAchievements(stats);
@@ -2483,14 +2482,14 @@ class GameManager {
         `;
 
         if (isHighScore) {
-            resultsHTML += `<p class="high-score-badge">🏆 New High Score! 🏆</p>`;
+            resultsHTML += '<p class="high-score-badge">🏆 New High Score! 🏆</p>';
         }
 
         if (perfectRound) {
-            resultsHTML += `<p class="perfect-badge">✨ Perfect Round! ✨</p>`;
+            resultsHTML += '<p class="perfect-badge">✨ Perfect Round! ✨</p>';
         }
 
-        resultsHTML += `<p>Great job! 🌟</p>`;
+        resultsHTML += '<p>Great job! 🌟</p>';
 
         this.resultDetails.innerHTML = resultsHTML;
         this.resultDisplay.classList.add('active');
@@ -2552,7 +2551,7 @@ class GameManager {
      * @returns {number} Total games played
      */
     getTotalGamesPlayed() {
-        const allProgress = StorageManager.load(StorageManager.KEYS.PROGRESS, {});
+        const allProgress = GameStorageManager.load(GameStorageManager.KEYS.PROGRESS, {});
         return Object.values(allProgress).reduce((sum, p) => sum + (p.gamesPlayed || 0), 0);
     }
 
@@ -2560,7 +2559,6 @@ class GameManager {
      * Show educational standards modal
      */
     showStandardsProgress() {
-        const standardsProgress = StorageManager.getStandardsProgress();
         let html = '<div class="standards-modal-overlay" onclick="this.remove()">';
         html += '<div class="standards-modal" onclick="event.stopPropagation()">';
         html += '<div class="standards-header">';
@@ -2572,7 +2570,7 @@ class GameManager {
         // Show progress for each standard
         Object.keys(EDUCATIONAL_STANDARDS).forEach(code => {
             const standard = EDUCATIONAL_STANDARDS[code];
-            const mastery = StorageManager.getStandardMastery(code);
+            const mastery = GameStorageManager.getStandardMastery(code);
 
             html += `
                 <div class="standard-card">
