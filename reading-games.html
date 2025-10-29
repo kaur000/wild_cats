@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wild Cats Reading Games - Kent Elementary</title>
+    <link rel="stylesheet" href="reading-games.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Main Menu -->
+        <div id="main-menu" class="screen active">
+            <header class="main-header">
+                <div class="school-logo">
+                    <div class="wildcat-icon">🐆</div>
+                    <div class="school-info">
+                        <h1 class="school-name">Wild Cats Reading Games</h1>
+                        <p class="school-location">Kent Elementary School • Kent, WA</p>
+                    </div>
+                </div>
+                <p class="subtitle">Go Wild Cats! Choose a game to play! 🐾</p>
+                <button class="btn-progress" id="show-progress" title="View Learning Progress">
+                    📊 Progress Report
+                </button>
+            </header>
+
+            <div class="games-grid">
+                <div class="game-card" data-game="blends">
+                    <div class="game-icon">🎨</div>
+                    <h3>Blend Masters</h3>
+                    <p>Learn letter blends!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="LS" title="Listening Skills">LS</span>
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="digraphs">
+                    <div class="game-icon">💫</div>
+                    <h3>Digraph Detective</h3>
+                    <p>Find digraph sounds!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="LS" title="Listening Skills">LS</span>
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="vowel-teams">
+                    <div class="game-icon">👫</div>
+                    <h3>Vowel Teams</h3>
+                    <p>Master vowel pairs!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                        <span class="standard-badge" data-standard="RW" title="Reading & Writing">RW</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="sound-out">
+                    <div class="game-icon">🗣️</div>
+                    <h3>Sound It Out</h3>
+                    <p>Break words into sounds!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                        <span class="standard-badge" data-standard="AP" title="Applied Practice">AP</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="fluency">
+                    <div class="game-icon">⚡</div>
+                    <h3>Speed Reader</h3>
+                    <p>Build reading fluency!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="FLU" title="Fluency">FLU</span>
+                        <span class="standard-badge" data-standard="RW" title="Reading & Writing">RW</span>
+                        <span class="standard-badge" data-standard="COMP" title="Comprehension">COMP</span>
+                        <span class="standard-badge" data-standard="IW" title="Interactive Writing">IW</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="sight-words">
+                    <div class="game-icon">👀</div>
+                    <h3>Sight Words</h3>
+                    <p>Match tricky words!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                        <span class="standard-badge" data-standard="RW" title="Reading & Writing">RW</span>
+                        <span class="standard-badge" data-standard="FLU" title="Fluency">FLU</span>
+                        <span class="standard-badge" data-standard="LC" title="Language Comprehension">LC</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="rhyming">
+                    <div class="game-icon">🎵</div>
+                    <h3>Rhyme Time</h3>
+                    <p>Find rhyming words!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="LS" title="Listening Skills">LS</span>
+                        <span class="standard-badge" data-standard="LC" title="Language Comprehension">LC</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="syllables">
+                    <div class="game-icon">👏</div>
+                    <h3>Syllable Clap</h3>
+                    <p>Count syllables!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="LS" title="Listening Skills">LS</span>
+                        <span class="standard-badge" data-standard="AP" title="Applied Practice">AP</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="word-builder">
+                    <div class="game-icon">🔤</div>
+                    <h3>Word Builder</h3>
+                    <p>Build words from letters!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                        <span class="standard-badge" data-standard="RW" title="Reading & Writing">RW</span>
+                        <span class="standard-badge" data-standard="AP" title="Applied Practice">AP</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="beginning-sounds">
+                    <div class="game-icon">🎯</div>
+                    <h3>Beginning Sounds</h3>
+                    <p>Match pictures to sounds!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="LS" title="Listening Skills">LS</span>
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="magic-e">
+                    <div class="game-icon">🌟</div>
+                    <h3>Magic E</h3>
+                    <p>Transform words with silent E!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                        <span class="standard-badge" data-standard="RW" title="Reading & Writing">RW</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="word-families">
+                    <div class="game-icon">🎪</div>
+                    <h3>Word Families</h3>
+                    <p>Group words by patterns!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="PA" title="Phonological Awareness">PA</span>
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                        <span class="standard-badge" data-standard="AP" title="Applied Practice">AP</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="story-sequencer">
+                    <div class="game-icon">📚</div>
+                    <h3>Story Sequencer</h3>
+                    <p>Put story parts in order!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="COMP" title="Comprehension">COMP</span>
+                        <span class="standard-badge" data-standard="LC" title="Language Comprehension">LC</span>
+                        <span class="standard-badge" data-standard="RW" title="Reading & Writing">RW</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+
+                <div class="game-card" data-game="word-detective">
+                    <div class="game-icon">🔍</div>
+                    <h3>Word Detective</h3>
+                    <p>Find hidden words!</p>
+                    <div class="standards-badges">
+                        <span class="standard-badge" data-standard="BL" title="Basic Literacy">BL</span>
+                        <span class="standard-badge" data-standard="RW" title="Reading & Writing">RW</span>
+                        <span class="standard-badge" data-standard="FLU" title="Fluency">FLU</span>
+                    </div>
+                    <button class="btn btn-play">Play!</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Area -->
+        <div id="game-area" class="screen">
+            <div class="game-header-bar">
+                <button class="btn-back" id="back-to-menu">← Menu</button>
+                <div class="score-display">
+                    <span>Score: <strong id="score">0</strong></span>
+                    <span>Streak: <strong id="streak">0</strong> <span id="streak-fire">🔥</span></span>
+                </div>
+            </div>
+
+            <!-- Blends Game -->
+            <div id="blends-game" class="game-content">
+                <div class="game-title">
+                    <h2>🎨 Blend Masters Game</h2>
+                </div>
+
+                <div class="instruction">Look at the word and identify the consonant blend!</div>
+
+                <div class="word-display">
+                    <div class="current-word" id="blend-word">STOP</div>
+                    <button class="btn btn-sound" id="blend-sound">🔊 Hear Word</button>
+                    <p class="hint-text">Which letters blend together at the <strong id="blend-position">beginning</strong>?</p>
+                </div>
+
+                <div class="blend-choices" id="blend-choices"></div>
+            </div>
+
+            <!-- Digraphs Game -->
+            <div id="digraphs-game" class="game-content">
+                <div class="game-title">
+                    <h2>💫 Digraph Detective Game</h2>
+                </div>
+
+                <div class="instruction">Find the digraph in the word!</div>
+
+                <div class="word-display">
+                    <div class="current-word" id="digraph-word">SHIP</div>
+                    <button class="btn btn-sound" id="digraph-sound">🔊 Hear Word</button>
+                    <p class="hint-text">Which two letters make one sound?</p>
+                </div>
+
+                <div class="digraph-choices" id="digraph-choices"></div>
+            </div>
+
+            <!-- Vowel Teams Game -->
+            <div id="vowel-teams-game" class="game-content">
+                <div class="game-title">
+                    <h2>👫 Vowel Teams Game</h2>
+                </div>
+
+                <div class="instruction">Listen to the word, then fill in the missing vowel team!</div>
+
+                <div class="word-display">
+                    <div class="vowel-word-container">
+                        <span id="vowel-before" class="word-part">R</span>
+                        <span id="vowel-blank" class="word-blank">__</span>
+                        <span id="vowel-after" class="word-part">N</span>
+                    </div>
+                    <button class="btn btn-sound" id="vowel-sound">🔊 Hear Word</button>
+                    <p class="hint-text" id="vowel-hint">Listen for the vowel sound in the middle</p>
+                </div>
+
+                <div class="vowel-choices" id="vowel-choices"></div>
+            </div>
+
+            <!-- Sound Out Game -->
+            <div id="sound-out-game" class="game-content">
+                <div class="game-title">
+                    <h2>🗣️ Sound It Out Game</h2>
+                </div>
+
+                <div class="instruction">Break the word into sounds!</div>
+
+                <div class="word-display">
+                    <div class="current-word" id="sound-word">FROG</div>
+                    <button class="btn btn-sound" id="sound-sound">🔊 Hear Word</button>
+                    <p class="hint-text">How many sounds do you hear?</p>
+                </div>
+
+                <div class="sound-builder" id="sound-builder"></div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-submit" id="sound-submit">Check Sounds ✓</button>
+                    <button class="btn btn-clear" id="sound-clear">Clear</button>
+                </div>
+            </div>
+
+            <!-- Fluency Game -->
+            <div id="fluency-game" class="game-content">
+                <div class="game-title">
+                    <h2>⚡ Speed Reader Game</h2>
+                </div>
+
+                <div class="instruction">Read the sentence as fast as you can!</div>
+
+                <div class="fluency-display">
+                    <div class="sentence-box" id="sentence-box">
+                        <p class="sentence" id="fluency-sentence">The quick brown fox jumps.</p>
+                    </div>
+                    <button class="btn btn-sound btn-large" id="fluency-sound">🔊 Hear Sentence</button>
+                </div>
+
+                <div class="typing-area">
+                    <input type="text" id="fluency-input" class="spell-input" placeholder="Type what you read..." autocomplete="off" spellcheck="false">
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-submit" id="fluency-submit">Check Reading ✓</button>
+                    <button class="btn btn-skip" id="fluency-skip">Skip →</button>
+                </div>
+            </div>
+
+            <!-- Syllable Game -->
+            <div id="syllables-game" class="game-content">
+                <div class="game-title">
+                    <h2>👏 Syllable Clap Game</h2>
+                </div>
+
+                <div class="word-display">
+                    <div class="instruction">Listen and clap for each syllable!</div>
+                    <div class="current-word" id="syl-word">RAINBOW</div>
+                    <button class="btn btn-sound" id="syl-sound">🔊 Hear Word</button>
+                </div>
+
+                <div class="clap-area">
+                    <button class="btn-clap" id="clap-btn">
+                        <span class="clap-icon">👏</span>
+                        <span class="clap-text">CLAP!</span>
+                    </button>
+                    <div class="clap-counter" id="claps-made"></div>
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-submit" id="syl-submit" disabled>Check Answer ✓</button>
+                    <button class="btn btn-skip" id="syl-skip">Next Word →</button>
+                </div>
+            </div>
+
+            <!-- Sight Words Game -->
+            <div id="sight-words-game" class="game-content">
+                <div class="game-title">
+                    <h2>👀 Sight Words Game</h2>
+                </div>
+
+                <div class="instruction">Listen carefully, then find the word you heard!</div>
+
+                <div class="sight-word-display">
+                    <div class="audio-prompt-box">
+                        <div class="audio-icon">🔊</div>
+                        <p class="audio-instruction">Click to hear the word</p>
+                        <button class="btn btn-sound btn-large" id="sight-sound">🔊 Play Word</button>
+                        <p class="hint-text-small">Listen as many times as you need!</p>
+                    </div>
+                </div>
+
+                <div class="word-choices" id="word-choices"></div>
+            </div>
+
+            <!-- Rhyming Game -->
+            <div id="rhyming-game" class="game-content">
+                <div class="game-title">
+                    <h2>🎵 Rhyme Time Game</h2>
+                </div>
+
+                <div class="instruction">Which word rhymes with...</div>
+
+                <div class="rhyme-word-display">
+                    <div class="rhyme-target">
+                        <div class="rhyme-word" id="rhyme-target">CAT</div>
+                        <button class="btn btn-sound" id="rhyme-sound">🔊 Hear Word</button>
+                    </div>
+                </div>
+
+                <div class="rhyme-choices" id="rhyme-choices"></div>
+            </div>
+
+            <!-- Word Builder Game -->
+            <div id="word-builder-game" class="game-content">
+                <div class="game-title">
+                    <h2>🔤 Word Builder Game</h2>
+                </div>
+
+                <div class="instruction">Use the letters to build the word you hear!</div>
+
+                <div class="word-display">
+                    <div class="audio-prompt-box">
+                        <div class="audio-icon">🔊</div>
+                        <button class="btn btn-sound btn-large" id="builder-sound">🔊 Hear Word</button>
+                        <p class="hint-text-small">Listen carefully!</p>
+                    </div>
+                </div>
+
+                <div class="word-building-area">
+                    <div class="built-word" id="built-word"></div>
+                </div>
+
+                <div class="letter-bank" id="letter-bank"></div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-submit" id="builder-submit">Check Word ✓</button>
+                    <button class="btn btn-clear" id="builder-clear">Clear</button>
+                </div>
+            </div>
+
+            <!-- Beginning Sounds Game -->
+            <div id="beginning-sounds-game" class="game-content">
+                <div class="game-title">
+                    <h2>🎯 Beginning Sounds Game</h2>
+                </div>
+
+                <div class="instruction">Which letter makes the beginning sound?</div>
+
+                <div class="picture-display">
+                    <div class="picture-box" id="picture-box">
+                        <div class="picture-emoji" id="picture-emoji">🐱</div>
+                        <button class="btn btn-sound" id="beginning-sound">🔊 Hear Word</button>
+                    </div>
+                </div>
+
+                <div class="letter-choices" id="letter-choices"></div>
+            </div>
+
+            <!-- Magic E Game -->
+            <div id="magic-e-game" class="game-content">
+                <div class="game-title">
+                    <h2>🌟 Magic E Game</h2>
+                </div>
+
+                <div class="instruction">Add the magic E to transform the word!</div>
+
+                <div class="magic-display">
+                    <div class="word-transformation">
+                        <div class="before-word" id="before-word">CAN</div>
+                        <div class="magic-arrow">→ ✨</div>
+                        <div class="after-word" id="after-word">CAN_</div>
+                    </div>
+                    <button class="btn btn-sound" id="magic-sound-before">🔊 Before</button>
+                    <button class="btn btn-sound" id="magic-sound-after">🔊 After</button>
+                </div>
+
+                <div class="magic-question">
+                    <p id="magic-question-text">What does the new word spell?</p>
+                </div>
+
+                <div class="magic-choices" id="magic-choices"></div>
+            </div>
+
+            <!-- Word Families Game -->
+            <div id="word-families-game" class="game-content">
+                <div class="game-title">
+                    <h2>🎪 Word Families Game</h2>
+                </div>
+
+                <div class="instruction">Sort the words into the correct family!</div>
+
+                <div class="families-display">
+                    <div class="family-header" id="family-header">
+                        <span class="family-pattern" id="family-pattern">-at</span> family
+                    </div>
+                </div>
+
+                <div class="word-sorting-area">
+                    <div class="sortable-words" id="sortable-words"></div>
+                </div>
+
+                <div class="family-buckets" id="family-buckets"></div>
+            </div>
+
+            <!-- Story Sequencer Game -->
+            <div id="story-sequencer-game" class="game-content">
+                <div class="game-title">
+                    <h2>📚 Story Sequencer Game</h2>
+                </div>
+
+                <div class="instruction">Put the story in the correct order!</div>
+
+                <div class="story-info">
+                    <h3 id="story-title">A Day at School</h3>
+                    <button class="btn btn-sound" id="story-sound">🔊 Hear Story</button>
+                </div>
+
+                <div class="story-sentences" id="story-sentences"></div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-submit" id="story-submit">Check Order ✓</button>
+                    <button class="btn btn-skip" id="story-skip">Skip →</button>
+                </div>
+            </div>
+
+            <!-- Word Detective Game -->
+            <div id="word-detective-game" class="game-content">
+                <div class="game-title">
+                    <h2>🔍 Word Detective Game</h2>
+                </div>
+
+                <div class="instruction">Unscramble the letters to find the word!</div>
+
+                <div class="word-display">
+                    <div class="scrambled-word" id="scrambled-word">ATCN</div>
+                    <button class="btn btn-sound" id="detective-sound">🔊 Hear Word</button>
+                    <p class="hint-text" id="detective-hint">Hint: A small furry pet</p>
+                </div>
+
+                <div class="typing-area">
+                    <input type="text" id="detective-input" class="spell-input" placeholder="Type the word..." autocomplete="off" spellcheck="false">
+                </div>
+
+                <div class="action-buttons">
+                    <button class="btn btn-submit" id="detective-submit">Check Word ✓</button>
+                    <button class="btn btn-skip" id="detective-skip">Skip →</button>
+                </div>
+            </div>
+
+            <!-- Result Display -->
+            <div id="result-display" class="result-overlay">
+                <div class="result-card">
+                    <div class="result-emoji" id="result-emoji">🎉</div>
+                    <div class="result-message" id="result-message">Great job!</div>
+                    <div class="result-details" id="result-details"></div>
+                    <button class="btn btn-continue" id="continue-btn">Continue →</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar" id="progress-bar">
+            <div class="progress-fill" id="progress-fill"></div>
+            <div class="progress-text" id="progress-text">0 / 10</div>
+        </div>
+    </div>
+
+    <script src="reading-games.js"></script>
+</body>
+</html>
