@@ -1,0 +1,76 @@
+name: CI/CD Pipeline - Lint and Deploy to AWS Amplify
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  lint:
+    name: Lint Code Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint (JavaScript)
+        run: npm run lint:js
+
+      - name: Run Stylelint (CSS)
+        run: npm run lint:css
+
+      - name: Lint Summary
+        if: success()
+        run: echo "✅ All lint checks passed successfully!"
+
+  deploy:
+    name: Deploy to AWS Amplify
+    needs: lint
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Install AWS Amplify CLI
+        run: npm install -g @aws-amplify/cli
+
+      - name: Deploy to Amplify
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AMPLIFY_APP_ID: ${{ secrets.AMPLIFY_APP_ID }}
+        run: |
+          echo "🚀 Deploying to AWS Amplify..."
+          aws amplify start-deployment \
+            --app-id $AMPLIFY_APP_ID \
+            --branch-name main
+
+      - name: Deployment Summary
+        if: success()
+        run: |
+          echo "✅ Deployment successful!"
+          echo "🌐 Your app is being deployed to AWS Amplify"
+          echo "📱 Check your Amplify Console for the live URL"

@@ -1,0 +1,25 @@
+{
+  "name": "wild-cats-reading-games",
+  "version": "1.0.0",
+  "description": "Wild Cats Reading Games - Kent Elementary School educational web application",
+  "main": "index.html",
+  "scripts": {
+    "lint": "npm run lint:js && npm run lint:css",
+    "lint:js": "eslint *.js",
+    "lint:css": "stylelint *.css",
+    "lint:fix": "npm run lint:js -- --fix && npm run lint:css -- --fix"
+  },
+  "keywords": [
+    "education",
+    "reading",
+    "games",
+    "elementary"
+  ],
+  "author": "Kent Elementary School",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "stylelint": "^16.2.1",
+    "stylelint-config-standard": "^36.0.0"
+  }
+}
